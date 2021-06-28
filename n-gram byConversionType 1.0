@@ -325,10 +325,6 @@ function main() {
 
       if (searchIsExcluded) { continue; }
     }
-
-    if (ConversionTypeName) {  // B&B Debug 
-      Logger.log("B&B NO EXCLUSION/LOOP => LOAD nGrams for currentKeywordId: " + currentKeywordId); 
-    }
     
     var currentWords = queryRow.Query.split(' ');
 
