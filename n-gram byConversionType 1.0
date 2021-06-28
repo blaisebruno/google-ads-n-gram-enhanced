@@ -245,8 +245,6 @@ function main() {
       var queryConvRow = queryConvRows.next();
       convKeywordsIds.push(queryConvRow["KeywordId"]);
     }
-    
-    Logger.log("B&B | Keywords matching conversion type: " + convKeywordsIds.join(",") ) ;   
 } 
   
 
@@ -294,7 +292,6 @@ function main() {
           Logger.log("B&B Keyword not in Conv. Type => LOOP");
           {continue;}
         }  
-        Logger.log("B&B NOT FOUND KEYWORD_ID");
       }    
   
       
