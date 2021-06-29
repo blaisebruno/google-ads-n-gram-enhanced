@@ -694,8 +694,7 @@ function writeOutput(outputArray, formatArray, sheet, nGramName, levelName, filt
       }
 
       
-      // Conditional format 
-
+      // Gradient formatting -- Added B&B
       var range = sheet.getRange(lastRow + 2, outputArray[0].indexOf('Cost') + 1, lastRow + outputArray.length);      
       var rule = SpreadsheetApp.newConditionalFormatRule()
                                 .setGradientMaxpoint("#ffd666").setGradientMinpoint("#ffffff")
