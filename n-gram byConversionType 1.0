@@ -10,7 +10,9 @@
 * Updated 2016-10-11: replacing 'ConvertedClicks' with 'Conversions'
 * Google AdWords Script maintained on brainlabsdigital.com
 *
-* Revised 2021-06-25 by Blaise & Bruno: filter by conversion name
+* Revised 2021-06-25 by Blaise & Bruno: 
+* Added: filter by conversion name optin  
+* Added: gradient formatting for key indicators
 **/
 function main() {
 //////////////////////////////////////////////////////////////////////////////
