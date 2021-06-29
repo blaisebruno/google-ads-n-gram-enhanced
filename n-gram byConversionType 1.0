@@ -2,74 +2,64 @@
 *
 * Search Query Mining Tool
 *
-* This script calculates the contribution of each word or phrase found in the
+* This script calculates the contribution of each word or phrase found in the 
 * search query report and outputs a report into a Google Doc spreadsheet.
 *
 * Version: 2.2
 * Updated 2015-09-17: replacing 'KeywordText' with 'Criteria'
 * Updated 2016-10-11: replacing 'ConvertedClicks' with 'Conversions'
+* Google AdWords Script maintained on brainlabsdigital.com
 *
-* Original script by brainlabsdigital.com
-* Revised 2021-06-28 by Blaise & Bruno: added filtering option by conversion name
-*/
-
+* Revised 2021-06-25 by Blaise & Bruno: filter by conversion name
+**/
 function main() {
-  // ////////////////////////////////////////////////////////////////////////////
-  // Options
-
-  var startDate = '2021-01-01';
-  var endDate = '2021-06-30';
-  // The start and end date of the date range for your search query data
-  // Format is yyyy-mm-dd
-
-  var currencySymbol = '€';
-  // The currency symbol used for formatting. For example "£", "$" or "€".
-
-  var campaignNameContains = 'CH';
-  // Use this if you only want to look at some campaigns
-  // such as campaigns with names containing 'Brand' or 'Shopping'.
-  // Leave as "" if not wanted.
-
-  var campaignNameDoesNotContain = '';
-  // Use this if you want to exclude some campaigns
-  // such as campaigns with names containing 'Brand' or 'Shopping'.
-  // Leave as "" if not wanted.
-
-  var ConversionTypeName = "Lead"; 
-  // Filter by Conversion type name (Added B&B)
+//////////////////////////////////////////////////////////////////////////////
+// Options
+var startDate = "2021-01-01";
+var endDate = "2021-06-30";
+// The start and end date of the date range for your search query data
+// Format is yyyy-mm-dd
+var currencySymbol = "€";
+// The currency symbol used for formatting. For example "£", "$" or "€".
+var campaignNameContains = "CH-fr";   
+// Use this if you only want to look at some campaigns
+// such as campaigns with names containing 'Brand' or 'Shopping'.
+// Leave as "" if not wanted.
+var campaignNameDoesNotContain = "";
+// Use this if you want to exclude some campaigns
+// such as campaigns with names containing 'Brand' or 'Shopping'.
+// Leave as "" if not wanted.
   
-  var ignorePausedCampaigns = true;
-  // Set this to true to only look at currently active campaigns.
-  // Set to false to include campaigns that had impressions but are currently paused.
-
-  var ignorePausedAdGroups = true;
-  // Set this to true to only look at currently active ad groups.
-  // Set to false to include ad groups that had impressions but are currently paused.
-
-  var checkNegatives = true;
-  // Set this to true to remove queries that would be excluded by your negative keywords.
-
-  var spreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1nSnHJLcQH8DsWtfjwE6ptN_ixE4MDCZOA1RFzl3bQ5U/edit#gid=0';
-  // The URL of the Google Doc the results will be put into.
-
-  var minNGramLength = 1;
-  var maxNGramLength = 2;
-  // The word length of phrases to be checked.
-  // For example if minNGramLength is 1 and maxNGramLength is 3,
-  // phrases made of 1, 2 and 3 words will be checked.
-  // Change both min and max to 1 to just look at single words.
-
-  var clearSpreadsheet = true;
-
-
-  // ////////////////////////////////////////////////////////////////////////////
-  // Thresholds
-
-  var queryCountThreshold = 0;
-  var impressionThreshold = 10;
-  var clickThreshold = 0;
-  var costThreshold = 0;
-  var conversionThreshold = 0;
+// Filter by Conversion type name  
+//var ConversionTypeName = "Lead not seller"; // Filter by conversion type (B&B)
+//var ConversionTypeName = "Lead mortgage"; // Filter by conversion type (B&B)
+var ConversionTypeName = "Lead seller"; // Filter by conversion type (B&B)
+  
+  
+var ignorePausedCampaigns = true;
+// Set this to true to only look at currently active campaigns.
+// Set to false to include campaigns that had impressions but are currently paused.
+var ignorePausedAdGroups = true;
+// Set this to true to only look at currently active ad groups.
+// Set to false to include ad groups that had impressions but are currently paused.
+var checkNegatives = true;
+// Set this to true to remove queries that would be excluded by your negative keywords.
+var spreadsheetUrl = "YOUR_SREADSHEET_URL";
+// The URL of the Google Doc the results will be put into.
+var minNGramLength = 1;
+var maxNGramLength = 2;
+// The word length of phrases to be checked.
+// For example if minNGramLength is 1 and maxNGramLength is 3, 
+// phrases made of 1, 2 and 3 words will be checked.
+// Change both min and max to 1 to just look at single words.
+var clearSpreadsheet = true;
+//////////////////////////////////////////////////////////////////////////////
+// Thresholds
+var queryCountThreshold = 0;
+var impressionThreshold = 10;
+var clickThreshold = 0;
+var costThreshold = 0;
+var conversionThreshold = 0;
   // Words will be ignored if their statistics are lower than any of these thresholds
 
 
@@ -289,7 +279,6 @@ function main() {
    
         var currentKeywordId = queryRow["KeywordId"];
         if (!convKeywordsIds.includes(currentKeywordId)){
-          Logger.log("B&B Keyword not in Conv. Type => LOOP");
           {continue;}
         }  
       }    
@@ -702,6 +691,41 @@ function writeOutput(outputArray, formatArray, sheet, nGramName, levelName, filt
         sheet.getRange('R' + (lastRow + 2) + 'C1:R' + (lastRow + outputArray.length) + 'C' + outputArray[0].length).sort(sortByColumns);
       }
 
+      
+      // Conditional format 
+
+      var range = sheet.getRange(lastRow + 2, outputArray[0].indexOf('Cost') + 1, lastRow + outputArray.length);      
+      var rule = SpreadsheetApp.newConditionalFormatRule()
+                                .setGradientMaxpoint("#ffd666").setGradientMinpoint("#ffffff")
+                                .setRanges([range])
+                                .build()
+      
+      var rules = sheet.getConditionalFormatRules();
+      rules.push(rule);
+      sheet.setConditionalFormatRules(rules);
+   
+      
+      var range = sheet.getRange(lastRow + 2, outputArray[0].indexOf('Conversions') + 1, lastRow + outputArray.length);      
+      var rule = SpreadsheetApp.newConditionalFormatRule()
+                                .setGradientMaxpoint("#57bb8a").setGradientMinpoint("#ffffff")
+                                .setRanges([range])
+                                .build()
+      
+      var rules = sheet.getConditionalFormatRules();
+      rules.push(rule);
+      sheet.setConditionalFormatRules(rules);   
+      
+      var range = sheet.getRange(lastRow + 2, outputArray[0].indexOf('Cost / conv.') + 1, lastRow + outputArray.length);      
+      var rule = SpreadsheetApp.newConditionalFormatRule()
+                                .setGradientMaxpoint("#e67c73").setGradientMinpoint("#57bb8a")
+                                .setRanges([range])
+                                .build()
+      
+      var rules = sheet.getConditionalFormatRules();
+      rules.push(rule);
+      sheet.setConditionalFormatRules(rules); 
+      
+      
       break;
     } catch (e) {
       if (e == 'Exception: This action would increase the number of cells in the worksheet above the limit of 2000000 cells.') {
