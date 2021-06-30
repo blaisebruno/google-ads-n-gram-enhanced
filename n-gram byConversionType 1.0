@@ -689,8 +689,13 @@ function writeOutput(outputArray, formatArray, sheet, nGramName, levelName, filt
         if (outputArray[0][1] == 'Ad Group') {
           sortByColumns.push({ column: 2, ascending: true });
         }
-        sortByColumns.push({ column: outputArray[0].indexOf('Cost') + 1, ascending: false });
-        sortByColumns.push({ column: outputArray[0].indexOf('Impressions') + 1, ascending: false });
+        
+        // We prefer to sort by Conversions then Cost per conv.  (B&B)
+        sortByColumns.push({ column: outputArray[0].indexOf('Conversions') + 1, ascending: false });   
+        sortByColumns.push({ column: outputArray[0].indexOf('Cost / conv.') + 1, ascending: false });  
+        // sortByColumns.push({ column: outputArray[0].indexOf('Cost') + 1, ascending: false });
+        // sortByColumns.push({ column: outputArray[0].indexOf('Impressions') + 1, ascending: false });
+       
         sheet.getRange('R' + (lastRow + 2) + 'C1:R' + (lastRow + outputArray.length) + 'C' + outputArray[0].length).sort(sortByColumns);
       }
 
