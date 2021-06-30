@@ -13,6 +13,7 @@
 * Revised 2021-06-25 by Blaise & Bruno: 
 * Added: filter by conversion name option  
 * Added: gradient formatting for key performance indicators
+* Added: freeze header columns for a better readability  
 **/
 function main() {
 //////////////////////////////////////////////////////////////////////////////
