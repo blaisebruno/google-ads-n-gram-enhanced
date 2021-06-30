@@ -725,7 +725,7 @@ function writeOutput(outputArray, formatArray, sheet, nGramName, levelName, filt
       var rules = sheet.getConditionalFormatRules();
       rules.push(rule);
       sheet.setConditionalFormatRules(rules); 
-      
+      sheet.setFrozenRows(4);  // Freeze header rows for better readability (B&B)
       
       break;
     } catch (e) {
