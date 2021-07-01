@@ -109,7 +109,8 @@ var conversionThreshold = 0;
     + 'FROM   CAMPAIGN_PERFORMANCE_REPORT '
     + 'WHERE Impressions > 0 ' + whereStatements
     + 'DURING ' + dateRange) ;
- 
+   }
+   
   var campaignRows = campaignReport.rows();
   while (campaignRows.hasNext()) {
     var campaignRow = campaignRows.next();
