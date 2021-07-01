@@ -25,7 +25,7 @@ var endDate = "2021-06-30";
 // Format is yyyy-mm-dd
 var currencySymbol = "€";
 // The currency symbol used for formatting. For example "£", "$" or "€".
-var campaignNameContains = "CH-fr";   
+var campaignNameContains = "";   
 // Use this if you only want to look at some campaigns
 // such as campaigns with names containing 'Brand' or 'Shopping'.
 // Leave as "" if not wanted.
@@ -35,9 +35,7 @@ var campaignNameDoesNotContain = "";
 // Leave as "" if not wanted.
   
 // Filter by Conversion type name  
-//var ConversionTypeName = "Lead not seller"; // Filter by conversion type (B&B)
-//var ConversionTypeName = "Lead mortgage"; // Filter by conversion type (B&B)
-var ConversionTypeName = "Lead seller"; // Filter by conversion type (B&B)
+var ConversionTypeName = ""; // Filter by conversion type (B&B)
   
   
 var ignorePausedCampaigns = true;
