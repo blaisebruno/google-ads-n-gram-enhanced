@@ -93,13 +93,22 @@ var conversionThreshold = 0;
     whereStatements += "AND CampaignStatus IN ['ENABLED','PAUSED'] ";
   }
 
-  var campaignReport = AdWordsApp.report(
+  // Revised B&B: allow script to execute with no campaigns parameters
+  var campaignReport = ''; 
+  if (campaignNameContains){
+      campaignReport = AdWordsApp.report(
     'SELECT CampaignName, CampaignId '
     + 'FROM   CAMPAIGN_PERFORMANCE_REPORT '
     + "WHERE CampaignName CONTAINS_IGNORE_CASE '" + campaignNameContains + "' "
     + 'AND Impressions > 0 ' + whereStatements
-    + 'DURING ' + dateRange
-  );
+    + 'DURING ' + dateRange) ;
+     } else {
+       campaignReport = AdWordsApp.report(
+    'SELECT CampaignName, CampaignId '
+    + 'FROM   CAMPAIGN_PERFORMANCE_REPORT '
+    + 'WHERE Impressions > 0 ' + whereStatements
+    + 'DURING ' + dateRange) ;
+ 
   var campaignRows = campaignReport.rows();
   while (campaignRows.hasNext()) {
     var campaignRow = campaignRows.next();
