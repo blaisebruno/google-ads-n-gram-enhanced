@@ -14,7 +14,7 @@
 * Added: filter by conversion name option  
 * Added: gradient formatting for key performance indicators
 * Added: freeze header columns for a better readability  
-* Revised: allow to run the scrit without any campaign name as parameter
+* Revised: allow to run the script without any campaign name as parameter
 **/
 function main() {
 //////////////////////////////////////////////////////////////////////////////
