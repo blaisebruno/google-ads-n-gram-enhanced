@@ -11,16 +11,17 @@
 * Google AdWords Script maintained on brainlabsdigital.com
 *
 * Revised 2021-06 by Blaise & Bruno: 
-* Added: filter by conversion name option  
+* Added: filter by conversion name   
 * Added: gradient formatting for key performance indicators
 * Added: freeze header columns for a better readability  
 * Revised: allow to run the script without any campaign name as parameter
+* Added 2022-01: filter by advertising channel  
 **/
 function main() {
 //////////////////////////////////////////////////////////////////////////////
 // Options
 var startDate = "2021-01-01";
-var endDate = "2021-06-30";
+var endDate = "2021-12-31";
 // The start and end date of the date range for your search query data
 // Format is yyyy-mm-dd
 var currencySymbol = "€";
@@ -33,11 +34,9 @@ var campaignNameDoesNotContain = "";
 // Use this if you want to exclude some campaigns
 // such as campaigns with names containing 'Brand' or 'Shopping'.
 // Leave as "" if not wanted.
-  
 // Filter by Conversion type name  
 var ConversionTypeName = ""; // Filter by conversion type (B&B)
-  
-  
+var advertisingChannelType = "";  // Filter by advertising channel eg. SEARCH or SHOPPING (B&B)  
 var ignorePausedCampaigns = true;
 // Set this to true to only look at currently active campaigns.
 // Set to false to include campaigns that had impressions but are currently paused.
@@ -85,6 +84,9 @@ var conversionThreshold = 0;
 
   if (campaignNameDoesNotContain != '') {
     whereStatements += "AND CampaignName DOES_NOT_CONTAIN_IGNORE_CASE '" + campaignNameDoesNotContain + "' ";
+  }
+  if (advertisingChannelType != '') {
+    whereStatements += "AND AdvertisingChannelType = " + advertisingChannelType + " " ;
   }
   if (ignorePausedCampaigns) {
     whereStatements += 'AND CampaignStatus = ENABLED ';
