@@ -27,16 +27,13 @@ var endDate = "2021-12-31";
 var currencySymbol = "€";
 // The currency symbol used for formatting. For example "£", "$" or "€".
 var campaignNameContains = "";   
-// Use this if you only want to look at some campaigns
-// such as campaigns with names containing 'Brand' or 'Shopping'.
-// Leave as "" if not wanted.
+// Use this if you only want to look at some campaigns with names containing 'FRANCE' or leave blank
 var campaignNameDoesNotContain = "";
 // Use this if you want to exclude some campaigns
-// such as campaigns with names containing 'Brand' or 'Shopping'.
-// Leave as "" if not wanted.
+// such as campaigns with names containing 'Brand' or leave blank 
 // Filter by Conversion type name  
 var ConversionTypeName = ""; // Filter by conversion type (B&B)
-var advertisingChannelType = "";  // Filter by advertising channel eg. SEARCH or SHOPPING (B&B)  
+var advertisingChannelType = "";  // Filter by advertising channel eg. SEARCH or SHOPPING or leave blank (B&B)  
 var ignorePausedCampaigns = true;
 // Set this to true to only look at currently active campaigns.
 // Set to false to include campaigns that had impressions but are currently paused.
