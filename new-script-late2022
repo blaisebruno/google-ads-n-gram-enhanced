@@ -16,7 +16,7 @@
 * Added: freeze header columns for a better readability  
 * Revised: allow to run the script without any campaign name as parameter
 * Added 2022-01: filter by advertising channel
-* Upgraded 2022-11: migrated AWQL script from Nils Rooijmans' blog
+* Upgraded 2022-11: AWQL migration from Nils Rooijmans' blog
 **/
 function main() {
 //////////////////////////////////////////////////////////////////////////////
