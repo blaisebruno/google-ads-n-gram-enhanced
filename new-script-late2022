@@ -21,8 +21,8 @@
 function main() {
 //////////////////////////////////////////////////////////////////////////////
 // Options
-var startDate = "2021-01-01";
-var endDate = "2021-12-31";
+var startDate = "2022-01-01";
+var endDate = "2022-10-31";
 // The start and end date of the date range for your search query data
 // Format is yyyy-mm-dd
 var currencySymbol = "€";
