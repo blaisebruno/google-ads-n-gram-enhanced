@@ -33,7 +33,7 @@ var campaignNameDoesNotContain = "";
 // Use this if you want to exclude some campaigns
 // such as campaigns with names containing 'Brand' or leave blank 
 // Filter by Conversion type name  
-var ConversionTypeName = "Lead LP"; // Filter by conversion type (B&B)
+var ConversionTypeName = ""; // Filter by conversion type (B&B)
   
 var advertisingChannelType = "";  // Filter by advertising channel eg. SEARCH or SHOPPING or leave blank (B&B)  
 var ignorePausedCampaigns = true;
@@ -44,7 +44,7 @@ var ignorePausedAdGroups = true;
 // Set to false to include ad groups that had impressions but are currently paused.
 var checkNegatives = true;
 // Set this to true to remove queries that would be excluded by your negative keywords.
-var spreadsheetUrl = "https://docs.google.com/spreadsheets/d/1ZGs1CcEE3x_ZwN44JcGNBN_wmv7yPxgnpVf6leoplVQ/edit#gid=0";
+var spreadsheetUrl = "YOUR_GOOGLE_SHEET_URL";
 // The URL of the Google Doc the results will be put into.
 var minNGramLength = 1;
 var maxNGramLength = 2;
