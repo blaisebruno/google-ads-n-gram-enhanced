@@ -10,13 +10,13 @@
 * Updated 2016-10-11: replacing 'ConvertedClicks' with 'Conversions'
 * Google AdWords Script maintained on brainlabsdigital.com
 *
-* Revised 2021-06 by Blaise & Bruno: 
+* Revised 2021/2022 by Blaise & Bruno: 
 * Added: filter by conversion name   
 * Added: gradient formatting for key performance indicators
 * Added: freeze header columns for a better readability  
 * Revised: allow to run the script without any campaign name as parameter
 * Added 2022-01: filter by advertising channel
-* Upgraded 2022-11: AWQL migration from Nils Rooijmans' blog
+* Upgraded 2022-11: integrating AWQL migration by Nils Rooijmans
 **/
 function main() {
 //////////////////////////////////////////////////////////////////////////////
